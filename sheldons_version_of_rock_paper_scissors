@@ -1,0 +1,98 @@
+#! usr/bin/python3
+#Date: Sat Jun 4 2022
+#Author: Igor Vlasenko
+
+import random
+
+condition = True
+game = True
+
+possible_guesses = ["rock", "paper", "scissors", "lizard", "spock"]
+computer = random.randint(0,4)
+
+def player_choice(argument):
+    switcher = {
+        "rock": 0,
+        "paper": 1,
+        "scissor": 2,
+        "lizard": 3,
+        "Spock": 4,
+    }
+    return switcher.get(argument, "nothing")
+
+def computer_choice(argument):
+    switcher = {
+        0: "rock",
+        1: "paper",
+        2: "scissor",
+        3: "lizard",
+        4: "Spock",
+    }
+    return switcher.get(argument, "nothing")
+
+def logic(var1, var2):
+    
+    player_play = var1
+    computer_play = var2
+    if player_play == computer_play:
+        print ("Tie! No winner.")
+    elif player_play == 0 and computer_play == 1: 
+        print ("paper covers rock, you lose")
+    elif player_play == 0 and computer_play == 2:
+        print ("rock breaks scissors, you win")
+    elif player_play == 0 and computer_play == 3:
+        print ("rock crushes lizard, you win")
+    elif player_play == 0 and computer_play == 4:
+        print ("Spock vaporizes rock, you lose")
+    elif player_play == 1 and computer_play == 0: 
+        print ("paper covers rock, you win")
+    elif player_play == 1 and computer_play == 2:
+        print ("scissors cut paper, you lose")
+    elif player_play == 1 and computer_play == 3:
+        print ("lizard eats paper, you lose")
+    elif player_play == 1 and computer_play == 4:
+        print ("paper disproves Spock, you win")
+    elif player_play == 2 and computer_play == 0: 
+        print ("rock breaks scissors, you lose")
+    elif player_play == 2 and computer_play == 1:
+        print ("scissors cut paper, you win")
+    elif player_play == 2 and computer_play == 3:
+        print ("scissors decapitate lizard, you win")
+    elif player_play == 2 and computer_play == 4:
+        print ("Spock smashes scissors, you lose")
+    elif player_play == 3 and computer_play == 0: 
+        print ("rock crushes lizard, you lose")
+    elif player_play == 3 and computer_play == 1:
+        print ("lizard eats paper, you win")
+    elif player_play == 3 and computer_play == 2:
+        print ("scissors decapitate lizard, you lose")
+    elif player_play == 3 and computer_play == 4:
+        print ("lizard poisons Spock, you win")
+    elif player_play == 4 and computer_play == 0: 
+        print ("Spock vaporizes rock, you win")
+    elif player_play == 4 and computer_play == 1:
+        print ("paper disproves Spock, you lose")
+    elif player_play == 4 and computer_play == 2:
+        print ("Spock smashes scissors, you win")
+    elif player_play == 4 and computer_play == 3:
+        print ("lizard poisons Spock, you lose")
+    else:
+        print ("not sure")
+        
+while game:
+    player_guess = input("rock, paper, scissors, lizard, Spock, Shoot! ")
+
+    for possible in possible_guesses:
+        if player_guess.lower() == possible:
+            condition = False
+    if condition:
+        print("check your spelling")
+    print("\nCopmuter picks", computer_choice(computer))
+    logic(player_choice(player_guess), computer)
+    
+    print("\nThanks for playing!\n")
+    play_again = input("Play again? ")
+    if play_again == "no" or play_again == "n":
+        game = False
+        
+          
